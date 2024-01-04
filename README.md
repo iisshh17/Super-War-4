@@ -1,97 +1,74 @@
 ![Logo-nav](https://s3.ap-south-1.amazonaws.com/kalvi-education.github.io/front-end-web-development/Kalvium-Logo.png)
 
-# Kalvium Lab | Higher Order Function
 
-In the previous lesson, we have learnt some useful Higher Order Functions to manipulate arrays & objects. Now, let's put them to use in this lab.
+# Kalvium Lab | Superwars Stage 4
 
-# Starter Code:
+Dustin and Lucus are best friends. They spend their weekends watching superhero series and playing superhero games. One Friday at school Mr.Hooper, their computer science faculty taught them HTML, CSS, and JavaScript. Dustin & Lucus realised they could build super cool super hero stuff using their knowledge. 
 
-The src/app.js contains three arrays for you, which you'll be using for this entire lab.
-The arrays are as follows -> foods, numberArray, myArray.
+The subsequent weekend, they decided to do it. Lucus and Dustin are now all set to build something super cool.
+
+Lucus always loves protagonists like most of us. But Dustin is quite crazy, he likes antagonists. So they decided to collect a bunch of their favorite Super Heroes and Super Villains names along with their pictures. Did they tell you about the game that they are gonna build? 
+
+Okay, let us explain. They are going to facilitate the ultimate war between Super Heroes and Super Villains. As they are new to these technologies, they need a **you** to help them build this game.
 
 ### How to approach a lab:
 
 Before starting have a look through the link below - to get an idea as how to approach the lab.
 
-![](https://docs.google.com/document/d/1SZ2Pryj6kAJj63wdB2_xVJgQHq6GddeZQ3nqDXYeaBA/edit?usp=sharing)
+[How to approach a lab](https://docs.google.com/document/d/1SZ2Pryj6kAJj63wdB2_xVJgQHq6GddeZQ3nqDXYeaBA/edit?usp=sharing)
 
-### Progression #1: Array Slice
+Along with a test page, you will also have a webpage -- which will display all your frontend work.
 
-Take an example array. We will be using the below array for reference.
+You can toggle between the webpage and testpage - by clicking on the respective buttons.
 
-```
-const foods = [pizza, burger, fingerChips, donuts, springRoll];
 
-```
+## Starter code
 
-Create a new array named as `modifiedFood` and also create a `slice()` method.The `slice()` method should return the selected elements in an array, as a new array object. This method starts slicing the array from the given start argument and ends the slicing operation one element before the given second argument.
+The `src/app.js` contains an array of 20 Super Heroes and Super-Villains. We are talking about the array of 20 _strings_ containing each Super Heroes and Super-Villains names. Here is one example of how the data is displayed:
 
-```
-Expected output: [burger, fingerChips, donuts]
-```
-
-### Progression #2: Array Splice
-
-The splice() method adds/removes items to/from an array, and returns the removed item(s).
-
-Take an example array. Create a function `spliced()` and use `splice()` within this function to get the below expected output. Elements are added to the original array.
-
-```
-const foods = [pizza, burger, fingerShips, donuts, springRoll];
-
-Expected output: [pizza, burger, noodles, icecream, fingerShips, donuts, springRoll];
+```javascript
+[
+    "Spiderman"
+]
 ```
 
-### Progression #3: Filter
+### Progression 1: Rethink and reuse
 
-Filter is an array method. It accepts a test function as an argument and returns a new array with only the elements for which the test function returns true.
+Now, add `member variables` like id, name, strength, image and type to `class``Player` and then assign them appropriate values such that they _return a valid player object_.
+*  `strength` can be generated from `getRandomStrength()` `member function`, which _returns a random strength_ from 1 to 100 .
+* `image` can be sequential i.e. "images/super-"+(i+1)+".png"  
+* `type` of player can alternating between hero and villain or your own logic
+    ```javascript
+    [
+        {
+            id:1,
+            name:"Super Man",
+            strength:100,
+            img:"images/hero-1.png",
+            type:"hero|villain"
+        }
+    ]
+    ```
 
-Now, create a function `checkNumber()` which takes `numberArray` and `operation` as arguments and _returns an array after performing the respective operation_.
+### Progression 2: Make it subtle
 
-```
-Take numberArray as
-
-const numberArray = [12,324,213,4,2,3,45,4234];
-```
-
-There are 2 operations -->
-
-1. To check whether the number is even or not -> for this create a function as `isEven()` which takes `number` as the argument and _returns whether the function is even or not_.
-2. To check whether the number is a prime number or not. Create another functon called `isPrime()` with takes same `number` as argument and _returns whether the function is prime or not_.
-
-### Progression #4: Reject
-
-We can now reuse the `isPrime()` function in conjunction with reject to get all the non-prime numbers in the array. The reject function does the opposite of the filter function. It returns an array with all the elements that do not satisfy the condition. Kindly note that there is no reject method in javascript arrays like filters. So you need to define a new function and make it work like reject.
-
-Create a function `nonPrime()` which takes `numberArray` as argument and _return all non-prime numbers from the above given array in Function #3_.
-
-### Progression #5: Lambda
-
-When defining short functions, it's convenient to use an alternative syntax called lambda function that allows us to define anonymous functions in a more compact way: _( /*arguments*/ ) => { /*code*/ }_. If our function is only a return statement, we can even strip the curly brackets and avoid writing return: _( /*arguments*/ ) => /*value to return*/_.
-
-Now, rewrite the function `isEven()` and name it as `isEvenUsingLambda`--> by using the concept of Lambda Function.
-
-### Progression #6: Map
-
-Another very useful higher order function is map. It takes a function and applies it to all the elements of an array.
-The syntax is identical to `filter`.
-
-Now, create a function `findSquareOfNumbers()` which takes the following array called `myArray` as argument and _returns square value of all elements in the given array_.
-
-```
-const myArray = [11, 34, 20, 5, 53, 16];
+Dustin and Lucus want to display the players. So help them by creating a method `view()`, to accumulate HTML template as below and _return an HTML element_.
+```JS
+<div class="player" data-id="${players[i].id}">
+    <img src="${players[i].image}">
+    <div class="name">${players[i].name}</div>
+    <div class="strength">${players[i].strength}</div>
+</div>
 ```
 
-### Progression #7: Reduce
+### Progression 3: The Superwar
 
-Reduce is the last higher order function we are going to discuss and it's also the most powerful one. In fact, you can implement any list transformation operation with reduce.
+To begin the war there should be players, we can generate players by creating an object for the class `Superwars`, which should use `map` array method to loop through passed constant and _return `Player` Objects_. 
 
-Reduce takes a callback function and a starting value. The callback function takes as arguments an accumulator and the value of the current element of the array and returns the accumulator to be used in the next cycle. The values returned from the last call of the callback function is the value returned by `reduce`.
+**NOTE:** Once you are done with Progression 3 -> you can uncomment "window.onload" section (last 3 lines of the file) - to see the output on the webpage. Keep in mind that if you uncomment it before defining superwars correctly, your test page won't load.
 
-Create a function `multiply()` which takes an argument of `myArray` and _returns multiplication value of all numbers in the given array_.
+## Expected Output
 
-Let's expand our knowledge by `implementing map with reduce`.
-
-Take the function explained in the above task - (task 6) of `map` and try it by implementing the same by using `reduce`. Create a function `sumOfSquares()`, and take `myArray` as the argument, and return the sum of squares of the given array - `myArray`.
+![Superwars](https://s3.ap-south-1.amazonaws.com/kalvi-education.github.io/front-end-web-development/superwars-oops.png)
 
 Happy Coding Kalvium ❤️

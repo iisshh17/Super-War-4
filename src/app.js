@@ -1,59 +1,108 @@
-const foods = ["pizza", "burger", "fingerChips", "donuts", "springRoll"];
-const numberArray = [12,324,213,4,2,3,45,4234];
-const myArray = [11, 34, 20, 5, 53, 16];
+const PLAYERS = [
+  'Spiderman',
+  'Captain America',
+  'Wonderwoman',
+  // "Popcorn",
+  // "Gemwoman",
+  // "Bolt",
+  // "Antwoman",
+  // "Mask",
+  // "Tiger",
+  // "Captain",
+  // "Catwoman",
+  // "Fish",
+  // "Hulk",
+  // "Ninja",
+  // "Black Cat",
+  // "Volverine",
+  // "Thor",
+  // "Slayer",
+  // "Vader",
+  // "Slingo"
+];
 
-// Progression 1:
-const slice = (lowerLimit, upperLimit) => {
-  let newArray = []
-  for(i=lowerLimit; i<upperLimit-1; i++){
-    newArray.push(foods[i])
+let players = [];
+
+// Player Class
+class Player {
+  constructor(id, name, type) {
+    // Progression 1: Create member variables and assign values
+    this.id = id
+    this.name = name
+    this.type = type
+    this.image = "images/super-"+(id+1)+".png"
+    this.strength = this.getRandomStrength()
+  
+
+  let tempPlayer = {
+    id : this.id,
+    name : this.name,
+    strength : this.strength,
+    image : this.image,
+    type : this.type
   }
-  return newArray
+
+  players.push(tempPlayer)
+}
+  // getting random strength
+  getRandomStrength = () => {
+    return Math.ceil(Math.random() * 100);
+  };
+
+  // Progression 2: Create a player for displaying
+  view = () => {
+    // Accumulate HTML template
+    // Type your code here
+
+    let player = document.createElement('div')
+    player.classList.add('player')
+    player.setAttribute('data-id', this.id);
+    player.innerHTML = `<img src="${players[this.id].image}">
+    <div class="name">${players[this.id].name}</div>
+    <div class="strength">${players[this.id].strength}</div>`
+    return player
+  };
 }
 
-// Progression 2:
-const spliced = () =>{
-  foods.splice(2,0,'noodles','icecream')
-  return foods
-}
-
-
-// Progression 3:
-const isEven = (number) =>
-{return number%2==0? true : false}
-
-const isPrime = (number) =>
-{if(number<=1)return false; 
-  for(let i=2;i<number;i++) 
-    if(number%i==0){return false}; 
-    return true }
-
-
-const checkNumber = (numberArray, operation) =>{
-  returnArray = numberArray.filter(num=>operation(num))
-  return returnArray
+// Superwar Class
+class Superwar {
+  constructor(players) {
+    // Progression 3:
+    // Create a field players
+    // Use Map method to loop through players argument and create new players
+    // Type your code here
+    this.players = players.map((player,i)=>
+    {
+      let type = (i%2==0) ? 'hero' : 'villain'
+      return new Player(i,player,type)
+    })
   }
 
+  // Display players in HTML
+  viewPlayers = () => {
+    let team = document.getElementById('heroes');
+    team.innerHTML = '';
+    let fragment = this.buildPlayers('hero');
+    team.append(fragment);
 
+    team = document.getElementById('villains');
+    team.innerHTML = '';
+    fragment = this.buildPlayers('villain');
+    team.append(fragment);
+  };
 
-// Progression 4:
-const reject = (numberArray) =>
-{return numberArray.filter(num=>!isPrime(num))}
+  // Build players fragment
+  buildPlayers = (type) => {
+    let fragment = document.createDocumentFragment();
+    this.players
+      .filter((player) => player.type == type)
+      .forEach((player) => fragment.append(player.view()));
+    return fragment;
+  };
+}
 
-const nonPrime = (numberArray) => 
-{return reject(numberArray)}
-
-// Progression 5:
-const isEvenUsingLambda = (number) => 
-number%2==0? true : false
-
-// Progression 6:
-const square = (number) => number * number;
-const findSquareOfNumbers = (myArray) => myArray.map(square)
-
-// Progression 7:
-const multiply = (myArray) => 
-{return myArray.reduce((multiplied,number)=>multiplied * number)}
-
-const sumOfSquares = (myArray) => 
-{return myArray.map(square).reduce((sum,number)=> sum+number)}
+// uncomment this part -- only after you complete progression 3
+// window.onload = () => {
+//     const superwar = new Superwar(PLAYERS);
+//     superwar.viewPlayers();
+// }
