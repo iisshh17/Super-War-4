@@ -102,7 +102,7 @@ class Superwar {
 }
 
 // uncomment this part -- only after you complete progression 3
-// window.onload = () => {
-//     const superwar = new Superwar(PLAYERS);
-//     superwar.viewPlayers();
-// }
+    window.onload = () => {
+    const superwar = new Superwar(PLAYERS);
+    superwar.viewPlayers();
+}
