@@ -30,7 +30,7 @@ class Player {
     this.id = id
     this.name = name
     this.type = type
-    this.image = "./images/super-"+(id+1)+".png"
+    this.image = "images/super-"+(id+1)+".png"
     this.strength = this.getRandomStrength()
   
 
